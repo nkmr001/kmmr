@@ -6,6 +6,7 @@
 <body>
   <CENTER>
   <video id="local_video" autoplay style="width: 480px; height: 400px; border: 1px solid black;"></video>
+  <canvas id="myCanvas"></canvas>
   </CENTER>
 </body>
 <script type="text/javascript">
@@ -19,5 +20,13 @@
     console.error('mediaDevice.getUserMedia() error:', error);
     return;
    });
+   var c, ctx, img;
+   c = document.getElementById("myCanvas");
+   c.width = 640;
+   c.height = 480;
+   ctx = c.getContext("2d");
+   //ビデオ描画
+   var video = document.getElementById("myVideo");
+   ctx.drawImage( video , 0 , 0 , 640 , 480 );
 </script>
 </html>
