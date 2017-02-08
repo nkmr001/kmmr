@@ -16,17 +16,17 @@
   .then(function (stream) { // success
     localStream = stream;
     localVideo.src = window.URL.createObjectURL(localStream);
+    var c, ctx, img;
+    c = document.getElementById("myCanvas");
+    c.width = 640;
+    c.height = 480;
+    ctx = c.getContext("2d");
+    //ビデオ描画
+    var video = document.getElementById("local_video");
+    ctx.drawImage( video , 0 , 0 , 640 , 480 );
    }).catch(function (error) { // error
     console.error('mediaDevice.getUserMedia() error:', error);
     return;
    });
-   var c, ctx, img;
-   c = document.getElementById("myCanvas");
-   c.width = 640;
-   c.height = 480;
-   ctx = c.getContext("2d");
-   //ビデオ描画
-   var video = document.getElementById("myVideo");
-   ctx.drawImage( video , 0 , 0 , 640 , 480 );
 </script>
 </html>
