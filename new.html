@@ -7,38 +7,17 @@
   <CENTER>
   <video id="local_video" autoplay style="width: 480px; height: 400px; border: 1px solid black;"></video>
   </CENTER>
-  <script type="text/javascript">
-    count = 0;
-    timerID = setInterval('countup()',1000);
-    function countup() {
-      count++;
-      document.form_count.counter.value = count;
-    }
-    if (count == 5) {
-      startVideo();
-    }
-  </script>
-  <canvas id="myCanvas"></canvas>
 </body>
 <script type="text/javascript">
-  let localVideo = document.getElementById("local_video");
+  let localVideo = document.getElementById('local_video');
   let localStream;
-  function startVideo() {
-    navigator.mediaDevices.getUserMedia({video: true, audio: false})
-    .then(function (stream) {
-      localStream = stream;
-      localVideo.src = window.URL.createObjectURL(localStream);
-    }).catch(function (error) {
-      console.error("えらー！", error);
-      return;
-    });
-  var c, ctx, img;
-    c = document.getElementById("myCanvas");
-    c.width = 640;
-    c.height = 480;
-    ctx = c.getContext("2d");
-    var video = document.getElementById("local_video");
-    ctx.drawImage( video , 0 , 0 , 640 , 480 );
-  }
+  navigator.mediaDevices.getUserMedia({video: true, audio: false})
+  .then(function (stream) { // success
+    localStream = stream;
+    localVideo.src = window.URL.createObjectURL(localStream);
+   }).catch(function (error) { // error
+    console.error('mediaDevice.getUserMedia() error:', error);
+    return;
+   });
 </script>
 </html>
